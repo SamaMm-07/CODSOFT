@@ -1,33 +1,35 @@
-import java.util.Random;
 import java.util.Scanner;
 
-public class Task1 {
+public class Main {
+    public static void main(String[] args) {
+        Scanner s = new Scanner (System.in);
+        System.out.println("Enter number of subjects:");
+        int subjects = s.nextInt();
 
-    public static void main(String args[]) {
-        Random rand = new Random();
-        Scanner s = new Scanner(System.in);
-        NumGame game = new NumGame();
+        float total = 0;
 
-        int rand_num = rand.nextInt(1, 100);
-        //System.out.println("num= " + rand_num);
-
-        System.out.println("Choose from the following how would you like to play:\n 1.Put a limit for the number of trials\n 2.Unlimited trials");
-        int num = s.nextInt();
-
-        if (num == 1) {
-            System.out.println("Define the maximum number of trails:");
-            int numOfTrails = s.nextInt();
-            game.limitedTrails(numOfTrails , rand_num);
+        for(int i=1 ; i<=subjects ; i++){
+            System.out.print("Enter the mark(out of 100) of subject " + i + ":");
+            float mark = s.nextFloat();
+            total += mark;
         }
-        else if (num == 2) {
-            game.unlimitedTrails(rand_num);
-        }
-        else {
-            System.out.println("ERROR!!\n Choose again the preferred method");
-            while (num != 1 || num != 2) {
-                System.out.println("Choose from the following how would you like to play:\n 1.Put a limit for the number of trials\n 2.Unlimited trials");
-                num = s.nextInt();
-            }
-        }
+        float average = total/subjects;
+
+        System.out.println("Total marks= " + total);
+        System.out.println("Average marks= " + average);
+        System.out.print("Overall Grade: ");
+
+        if(average<=100 && average>=85)
+            System.out.println("A");
+        else if(average<85 && average>=70)
+            System.out.println("B");
+        else if(average<70 && average>=55)
+            System.out.println("C");
+        else if(average<55 && average>=50)
+            System.out.println("D");
+        else if(average<50 && average>=0)
+            System.out.println("F");
+        else
+            System.out.println("ERROR!!\nTRY AGAIN AND RE-ENTER YOUR MARKS...");
     }
 }
